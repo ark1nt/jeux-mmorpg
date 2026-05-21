@@ -116,7 +116,7 @@ local function loadData(player)
 			end
 			data.lastSeen = os.time()
 
-			-- ✅ Force HP/Mana au max au chargement
+			
 			data.stats.hp   = data.stats.maxHp
 			data.stats.mana = data.stats.maxMana
 
@@ -210,7 +210,7 @@ end
 -- EVENTS JOUEUR
 ------------------------------------------------------------------------
 Players.PlayerAdded:Connect(function(player)
-	local data = loadData(player)  -- ✅ CORRIGÉ — était Data(player)
+	local data = loadData(player) 
 	playerCache[player.UserId] = data
 
 	task.wait(1)
