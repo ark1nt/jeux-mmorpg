@@ -45,8 +45,8 @@ local COMBAT_CONFIG = {
 }
 
 local attackCooldowns = {}
-local dyingPlayers    = {} -- ✅ évite la double mort
-local invinciblePlayers = {} -- ✅ ajoute en haut avec attackCooldowns
+local dyingPlayers    = {} -- 
+local invinciblePlayers = {} -- 
 
 ------------------------------------------------------------------------
 -- UTILITAIRES
@@ -70,7 +70,7 @@ local function calculateDamage(attackerStats, defenderStats)
 	return baseDamage, isCrit
 end
 
--- ✅ Version unique et correcte de isPlayerAlive
+
 local function isPlayerAlive(player)
 	local data = PlayerDataManager.getData(player)
 	if not data or not data.stats then return false end
@@ -113,7 +113,7 @@ local function handlePlayerDeath(player)
 			invinciblePlayers[player.UserId] = nil
 		end)
 
-		-- ✅ Utilise PlayerDataLoaded pour mettre à jour le HUD
+		
 		local PDL = ReplicatedStorage:FindFirstChild("RemoteEvents")
 		if PDL then
 			local evt = PDL:FindFirstChild("PlayerDataLoaded")
@@ -214,7 +214,7 @@ local function enemyAttackPlayer(enemyModel, player)
 	if not data.stats then return end
 	if not isPlayerAlive(player) then return end
 	if dyingPlayers[player.UserId] then return end
-	if invinciblePlayers[player.UserId] then return end -- ✅ invincibilité respawn
+	if invinciblePlayers[player.UserId] then return end
 
 	local enemyStats = {
 		attack  = enemyModel:GetAttribute("attack")  or 10,
